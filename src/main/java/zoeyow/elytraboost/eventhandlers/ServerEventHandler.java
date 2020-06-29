@@ -19,7 +19,7 @@ public class ServerEventHandler {
                 new ConfigSyncMessage(Config.velocityToAdd, Config.serverOverride, Config.ignoreServer,
                         Config.velocityCap, Config.accelerationProportion,
                         Config.decelerationProportion, Config.sprintingFactor,
-                        Config.applyExhaustion, Config.exhaustionFactor),
+                        Config.applyExhaustion, Config.exhaustionFactor,Config.soundFactor),
                 (EntityPlayerMP) event.player);
     }
 }

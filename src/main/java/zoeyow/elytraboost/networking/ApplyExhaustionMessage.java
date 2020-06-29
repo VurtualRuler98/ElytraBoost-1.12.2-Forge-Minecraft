@@ -40,7 +40,7 @@ public class ApplyExhaustionMessage implements IMessage {
             if (!serverPlayer.isCreative()) {
                 serverPlayer.getServerWorld().addScheduledTask(() ->  {
                     serverPlayer.addExhaustion(message.exhaustion);
-		    if (serverPlayer.getEntityWorld().getTotalWorldTime() % Config.soundFactor == 0L) {
+		    if (serverPlayer.getEntityWorld().getTotalWorldTime() % (Config.soundFactor/(Math.round(message.exhaustion*100)+1)) == 0L) {
 			    serverPlayer.getEntityWorld().playSound(null,serverPlayer.getPosition(),SoundEvents.ENTITY_ENDERDRAGON_FLAP,SoundCategory.PLAYERS,0.5f,1.5f);
 			};
                 });

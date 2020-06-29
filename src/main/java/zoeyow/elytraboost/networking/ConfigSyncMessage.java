@@ -19,6 +19,7 @@ public class ConfigSyncMessage implements IMessage {
     private float sprintingFactorServer;
     private boolean applyExhaustionServer;
     private float exhaustionFactorServer;
+    private int soundFactorServer;
 
     public ConfigSyncMessage() {
     }
@@ -26,7 +27,7 @@ public class ConfigSyncMessage implements IMessage {
     public ConfigSyncMessage(float velocityToAddServer, boolean serverOverrideServer, boolean ignoreServerServer,
                              float velocityCapServer, float accelerationProportionServer,
                              float decelerationProportionServer, float sprintingFactorServer,
-                             boolean applyExhaustionServer, float exhaustionFactorServer) {
+                             boolean applyExhaustionServer, float exhaustionFactorServer, int soundFactorServer) {
         this.velocityToAddServer = velocityToAddServer;
         this.serverOverrideServer = serverOverrideServer;
         this.ignoreServerServer = ignoreServerServer;
@@ -36,6 +37,7 @@ public class ConfigSyncMessage implements IMessage {
         this.sprintingFactorServer = sprintingFactorServer;
         this.applyExhaustionServer = applyExhaustionServer;
         this.exhaustionFactorServer = exhaustionFactorServer;
+	this.soundFactorServer = soundFactorServer;
     }
 
     @Override
@@ -49,6 +51,7 @@ public class ConfigSyncMessage implements IMessage {
         sprintingFactorServer = buf.readFloat();
         applyExhaustionServer = buf.readBoolean();
         exhaustionFactorServer = buf.readFloat();
+	soundFactorServer = buf.readInt();
     }
 
     @Override
@@ -62,6 +65,7 @@ public class ConfigSyncMessage implements IMessage {
         buf.writeFloat(sprintingFactorServer);
         buf.writeBoolean(applyExhaustionServer);
         buf.writeFloat(exhaustionFactorServer);
+	buf.writeInt(soundFactorServer);
     }
 
     public static class ConfigSyncMessageHandler implements IMessageHandler<ConfigSyncMessage, IMessage> {
@@ -72,7 +76,7 @@ public class ConfigSyncMessage implements IMessage {
                 Config.syncClientConfigVariables(message.velocityToAddServer, message.serverOverrideServer,
                         message.ignoreServerServer, message.velocityCapServer, message.accelerationProportionServer,
                         message.decelerationProportionServer, message.sprintingFactorServer,
-                        message.applyExhaustionServer, message.exhaustionFactorServer);
+                        message.applyExhaustionServer, message.exhaustionFactorServer,message.soundFactorServer);
             }
             return null;
         }

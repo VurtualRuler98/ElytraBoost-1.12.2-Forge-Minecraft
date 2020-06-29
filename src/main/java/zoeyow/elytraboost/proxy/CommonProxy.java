@@ -32,7 +32,7 @@ public class CommonProxy {
         //sync the "physical client / server"'s two set of variables
         Config.syncClientConfigVariables(Config.velocityToAdd, Config.serverOverride, Config.ignoreServer,
                 Config.velocityCap, Config.accelerationProportion, Config.decelerationProportion, Config.sprintingFactor,
-                Config.applyExhaustion, Config.exhaustionFactor);
+                Config.applyExhaustion, Config.exhaustionFactor,Config.soundFactor);
         //check if Colytra is loaded
         if (Loader.isModLoaded("colytra")) {
             colytraLoaded = true;

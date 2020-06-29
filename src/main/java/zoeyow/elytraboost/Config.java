@@ -20,7 +20,7 @@ public class Config {
     public static float sprintingFactor = 1.33f;
     public static boolean applyExhaustion = true;
     public static float exhaustionFactor = 0.8f;
-    public static int soundFactor = 20;
+    public static int soundFactor = 50;
 
     //this is the set of variables that are synced when logging in a world, intended to be used client side
     public static float velocityToAddClient = 0.5f;
@@ -33,6 +33,7 @@ public class Config {
     public static float sprintingFactorClient = 1.33f;
     public static boolean applyExhaustionClient = true;
     public static float exhaustionFactorClient = 0.8f;
+    public static int soundFactorClient = 50;
 
     // Call this from CommonProxy.preInit(). It will create our config if it doesn't
     // exist yet and read the values if it does exist.
@@ -57,7 +58,7 @@ public class Config {
     public static void syncClientConfigVariables(float velocityToAdd, boolean serverOverride, boolean ignoreServer,
                                                  float velocityCap, float accelerationProportion,
                                                  float decelerationProportion, float sprintingFactor,
-                                                 boolean applyExhaustion, float exhaustionFactor) {
+                                                 boolean applyExhaustion, float exhaustionFactor, int soundFactor) {
         velocityToAddClient = velocityToAdd;
         serverOverrideClient = serverOverride;
         ignoreServerClient = ignoreServer;
@@ -67,6 +68,7 @@ public class Config {
         sprintingFactorClient = sprintingFactor;
         applyExhaustionClient = applyExhaustion;
         exhaustionFactorClient = exhaustionFactor;
+	soundFactorClient = soundFactor;
     }
 
     private static void initGeneralConfig(Configuration cfg) {
@@ -103,6 +105,6 @@ public class Config {
                 "exhaustionFactor", CATEGORY_GENERAL, 0.8f, 0.0f, 10.0f,
                 "The factor used when calculating hunger loss due to acceleration." +
                         "Unit: blocks / tick (acceleration) --> hunger points (1 = half the chicken leg icon)");
-	soundFactor = cfg.getInt("exhaustionFactor",CATEGORY_GENERAL,20,1,1000,"How often make noise?");
+	soundFactor = cfg.getInt("soundFactor",CATEGORY_GENERAL,50,1,1000,"How often make noise?");
     }
 }
