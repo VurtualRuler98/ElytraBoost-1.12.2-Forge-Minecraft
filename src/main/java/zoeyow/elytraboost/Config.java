@@ -20,6 +20,7 @@ public class Config {
     public static float sprintingFactor = 1.33f;
     public static boolean applyExhaustion = true;
     public static float exhaustionFactor = 0.8f;
+    public static int soundFactor = 20;
 
     //this is the set of variables that are synced when logging in a world, intended to be used client side
     public static float velocityToAddClient = 0.5f;
@@ -102,5 +103,6 @@ public class Config {
                 "exhaustionFactor", CATEGORY_GENERAL, 0.8f, 0.0f, 10.0f,
                 "The factor used when calculating hunger loss due to acceleration." +
                         "Unit: blocks / tick (acceleration) --> hunger points (1 = half the chicken leg icon)");
+	soundFactor = cfg.getInt("exhaustionFactor",CATEGORY_GENERAL,20,1,1000,"How often make noise?");
     }
 }

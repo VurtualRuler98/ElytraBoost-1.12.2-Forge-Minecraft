@@ -6,9 +6,13 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundCategory;
+import zoeyow.elytraboost.Config;
 
 public class ApplyExhaustionMessage implements IMessage {
     private float exhaustion;
+    private int flaptime;
 
     public ApplyExhaustionMessage() {
     }
@@ -36,6 +40,9 @@ public class ApplyExhaustionMessage implements IMessage {
             if (!serverPlayer.isCreative()) {
                 serverPlayer.getServerWorld().addScheduledTask(() ->  {
                     serverPlayer.addExhaustion(message.exhaustion);
+		    if (serverPlayer.getEntityWorld().getTotalWorldTime() % Config.soundFactor == 0L) {
+			    serverPlayer.getEntityWorld().playSound(null,serverPlayer.getPosition(),SoundEvents.ENTITY_ENDERDRAGON_FLAP,SoundCategory.PLAYERS,0.5f,1.5f);
+			};
                 });
                 //test
                 //serverPlayer.sendMessage(new TextComponentString("add exhaustion" + message.exhaustion));
